@@ -1,1 +1,3 @@
-# yasetai
+# yasetai!
+
+Simple weight tracker.

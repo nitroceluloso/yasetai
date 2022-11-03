@@ -1,0 +1,24 @@
+{
+  "name": "yasetai",
+  "version": "1.0.0",
+  "description": "easy weight tracker",
+  "source": "src/index.html",
+  "repository": "git@github.com:nitroceluloso/yasetai.git",
+  "author": "Cristobal Sepúlveda <cristobalsepulveda1@hotmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "parcel serve",
+    "build": "parcel build src/index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

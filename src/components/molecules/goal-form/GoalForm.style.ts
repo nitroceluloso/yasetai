@@ -15,13 +15,6 @@ export const RowStyl = styled.div`
     padding-bottom: 0.5rem;
 `
 
-export const InputStyl = styled.input`
-    display: block;
-    border: 2px solid #333;
-    border-radius: 0.25rem;
-    padding: 0.25rem;
-`
-
 export const LabelStyl = styled.label`
     display: block;
 `

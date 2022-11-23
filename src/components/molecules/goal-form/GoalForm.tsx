@@ -1,15 +1,13 @@
 import React from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import InputStyl from '../../atoms/Input';
+import Label from '../../atoms/Label';
 import {
     GoalFormContainer,
     GoalFormStyl,
-    InputStyl,
-    LabelStyl,
     RowStyl,
     SubmitInput
 } from './GoalForm.style';
-import * as yup from 'yup';
 
 type FormType = {
     currentWeight: number;
@@ -26,41 +24,40 @@ const weeklyOptions = [
     { text: '1 Kg', value: "1000" },
 ];
 
-const schema = yup.object({
-    currentWeight: yup.number().positive().required(),
-    desireWeight: yup.number().positive().required(),
-    weeklyGoal: yup.number().positive().required(),
-}).required();
-
 export const GoalForm = () => {
-    const { register, handleSubmit, watch, formState } = useForm<FormType>({
-        resolver: yupResolver(schema)
-    });
+    const { register, handleSubmit, formState } = useForm<FormType>();
     const onSubmit = data => console.log(data);
-    // console.log(watch('currentWeight'))
-    // console.log(formState.errors)
+
+    const restriction = {
+        required: true,
+        min: 50,
+        max: 120,
+        valueAsNumber: true
+    }
 
     return (
         <GoalFormContainer>
             <GoalFormStyl onSubmit={handleSubmit(onSubmit)}>
                 <RowStyl>
-                    <LabelStyl htmlFor="currentWeightInput">Peso actual</LabelStyl>
+                    <Label htmlFor="currentWeightInput">Peso actual</Label>
                     <InputStyl
                         id="currentWeight"
                         type="number"
-                        { ...register('currentWeight') }
+                        { ...register('currentWeight', restriction) }
                     />
+                    <span>{formState.errors.currentWeight?.type === 'required' ? 'This field is required' : ''}</span>
                 </RowStyl>
                 <RowStyl>
-                    <LabelStyl htmlFor="">Peso deseado</LabelStyl>
+                    <Label htmlFor="">Peso deseado</Label>
                     <InputStyl
                         id='desireWeight'
                         type="number"
-                        { ...register('desireWeight') }
+                        { ...register('desireWeight', restriction) }
                     />
+                    <span>{formState.errors.desireWeight?.type  === 'required' ? 'This field is required' : ''}</span>
                 </RowStyl>
                 <RowStyl>
-                    <LabelStyl htmlFor="weeklyGoal">Objetivo semanal</LabelStyl>
+                    <Label htmlFor="weeklyGoal">Objetivo semanal</Label>
                     <select
                         id="weeklyGoal"
                         { ...register('weeklyGoal', { required: true }) }
